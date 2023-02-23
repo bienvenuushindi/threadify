@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {defaultStyle, styleFour, styleOne, styleThree, styleTwo} from '../components/loaders/styles';
+import NumberingStylePreview from '../components/loaders/styles';
 import TweetComp from '../components/tweet';
-import makeThread from '../helper';
-import {Numbering} from '../utils/numbering';
+import {defaultStyle, Numbering, Position, style} from '../utils/numbering';
 import Thread from '../utils/thread';
+import SelectPositions from '../components/selectors/positions';
+import SelectNumbering from '../components/selectors/numbering';
 
 
 function Main() {
@@ -11,18 +12,27 @@ function Main() {
     'but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. ' +
     'If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the ' +
     'Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.Many ' +
-    'desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many ' +
+    'desktop publishing packages and web page editors now use is Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many ' +
     'websites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the ' +
     'likebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb' +
     'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssshhh' +
     'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhqqqqqqqqqqqqqqqqqqqqqqqqqqqqq).');
   const [thread, setThread] = useState<string[]>([]);
+  const [pos, setPos] = useState<Position>(Position.Start);
+  const [numStyle, setNumStyle] = useState<style>(defaultStyle());
   useEffect(() => {
-    // console.log(Numbering.getInstance())
-    setThread(makeThread(text));
-    Thread.setNumbering(Numbering.getInstance());
-    console.log(Thread.numbering.style.denominator)
-  }, [text]);
+    setThread(Thread.makeThread(text));
+  }, [text, pos, numStyle]);
+
+  function updatePosition(position: Position) {
+    setPos(position);
+    Numbering.getInstance().position = position;
+  }
+
+  function updateStyle(style: style) {
+    setNumStyle(style);
+    Numbering.getInstance().style = {...style};
+  }
 
   return (
     <main className="container mx-10/12 mx-auto">
@@ -30,8 +40,9 @@ function Main() {
       <div className="flex gap-2">
         <div className="w-2/12">
           <div className="flex flex-col w-100 gap-2">
-            {[defaultStyle(), styleOne(), styleTwo(), styleThree(), styleFour()].map((item, index) => <div
-              key={'style' + index}>{item}</div>)}
+            <SelectPositions pos={updatePosition}/>
+            <SelectNumbering numStyle={updateStyle}/>
+            <NumberingStylePreview position={pos} numberingStyle={numStyle}/>
           </div>
         </div>
         <div className="left w-6/12">
