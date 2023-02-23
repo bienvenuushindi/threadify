@@ -1,94 +1,35 @@
-export function defaultStyle() {
-  return (
-    <div className="animate-pulse flex border p-3 shadow flex-col ">
+import {Position, style} from '../../utils/numbering';
 
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 gap-4">
-          <div className="h-5 bg-slate-200 rounded-full w-11/12 col-span-1"/>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-        </div>
-      </div>
-
-    </div>
-  );
+type tweetTemplate = {
+  position: Position,
+  numberingStyle: style
 }
 
-export function styleOne() {
+function NumberingStylePreview({position, numberingStyle: item}: tweetTemplate) {
   return (
-    <div className="animate-pulse  border p-3 shadow flex-col ">
-
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 gap-4">
-          <div className="flex align-baseline w-100">
-            <div className="w-1/12 ">1)</div>
-            <div className="h-5 bg-slate-200 rounded-full w-11/12 col-span-1"/>
+    <div>
+      <h2>Preview</h2>
+      <div className="animate-pulse  border p-3 shadow flex-col ">
+        <div className="space-y-3">
+          <div className="grid grid-cols-1 gap-4">
+            <div className={`flex ${position === Position.End ? 'order-2 ' : ''} items-center w-100`}>
+              <div className={`w-fit ${position === Position.End ? 'order-2 ' : ''}`}>
+                {item.openParenthesis && <span>{item.openParenthesis}</span>}
+                {item.nominator && <span>{item.nominator}</span>}
+                {item.separator && <span>{item.separator}</span>}
+                {item.denominator && <span>{item.denominator}</span>}
+                {item.closeParenthesis && <span>{item.closeParenthesis}</span>}
+              </div>
+              <div className="h-4  bg-blue-400 rounded-full flex-grow col-span-1"/>
+            </div>
+            <div className="h-4 bg-blue-400  rounded-full col-span-1"/>
           </div>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
         </div>
       </div>
-
-    </div>
-  );
-}
-
-export function styleTwo() {
-  return (
-    <div className="animate-pulse flex border p-3 shadow flex-col ">
-
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 gap-4">
-          <div className="flex align-baseline w-100">
-            <div className="w-1/12 ">1)</div>
-            <div className="h-5 bg-slate-200 rounded-full w-11/12 col-span-1"/>
-          </div>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-        </div>
-      </div>
-
-    </div>
-  );
-}
-
-export function styleThree() {
-  return (
-    <div className="animate-pulse flex  border p-3 shadow flex-col ">
-
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 gap-4">
-          <div className="flex align-baseline w-100">
-            <div className="w-1/12 ">1)</div>
-            <div className="h-5 bg-slate-200 rounded-full w-11/12 col-span-1"/>
-          </div>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-        </div>
-      </div>
-
-    </div>
-  );
-}
-
-export function styleFour() {
-  return (
-
-    <div className="animate-pulse flex  border p-3 shadow flex-col ">
-
-      <div className="space-y-3">
-        <div className="grid grid-cols-1 gap-4">
-          <div className="flex align-baseline w-100">
-            <div className="w-1/12 ">1)</div>
-            <div className="h-5 bg-slate-200 rounded-full w-11/12 col-span-1"/>
-          </div>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-          <div className="h-5 bg-slate-200 rounded-full col-span-1"/>
-        </div>
-      </div>
-
     </div>
 
   );
 }
 
+
+export default NumberingStylePreview;
