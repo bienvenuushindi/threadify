@@ -21,6 +21,8 @@ class Thread {
 
   static applyNumbering(tweet: string, i: number): string {
     Thread.numbering.style.nominator = i + 1;
+    Thread.numbering.style.denominator = Thread.CountTweets;
+    // console.log(Thread.numbering.style.denominator);
     if (Thread.numbering.position === Position.Start) return Thread.numbering.toString() + ' ' + tweet;
     else return tweet + ' ' + Thread.numbering.toString();
   }
@@ -31,6 +33,7 @@ class Thread {
     let reference = option;
     let tweet: string = (end === 0) ? text.substring(start) : text.substring(start, end);
     // get last tab space in the substring
+    // console.log('= ' + (Thread.MaxTweetChars - (end - start)));
     if ((Thread.MaxTweetChars - (end - start)) >= reference) return tweet;
     else {
       let lastSpace: number = tweet.lastIndexOf(separator);
@@ -58,12 +61,13 @@ class Thread {
       // console.log(i);
       let tweet: string = '';
       let end: number = (i + 1 === threadLength) ? 0 : charInThread + Thread.MaxTweetChars;
+      // console.log("CharinThread "+ charInThread);
+      // console.log("end "+ end);
       tweet = Thread.extractTweetText(text, charInThread, end, 5);
 
       thread.push(tweet);
       if (threadLength !== Thread.CountTweets) {
         Thread.CountTweets = threadLength;
-        Thread.numbering.style.denominator = Thread.CountTweets;
       }
       charInThread += tweet.length;
     }
