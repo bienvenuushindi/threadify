@@ -1,23 +1,22 @@
 export type style = {
-  nominator: number,
+  nominator?: number,
   separator?: string,
-  denominator?: number
+  denominator?: number,
+  openParenthesis?: string
+  closeParenthesis?: string
 }
-export const defaultStyle = (nominator?: number): style => ({
-  nominator: nominator || 0,
-  separator: '/',
-});
+export const defaultStyle = (): style => ({});
 
 export enum Position {
-  Start,
-  End,
+  Start = 'start',
+  End = 'end',
 
 }
 
 export class Numbering {
   private static instance: Numbering;
-  private _position: Position = Position.Start;
-  private _style: style = defaultStyle();
+  private _position: Position;
+  private _style: style;
 
   private constructor(position?: Position, style?: style) {
     this._position = position || Position.Start;
@@ -28,12 +27,21 @@ export class Numbering {
     this._position = position;
   }
 
+  get position(): Position {
+    return this._position;
+  }
+
   public static getInstance(): Numbering {
     if (!Numbering.instance) {
       Numbering.instance = new Numbering();
     }
 
     return Numbering.instance;
+  }
+
+  updatePosition(position: Position): Numbering {
+    this._position = position;
+    return this;
   }
 
   set style(style: style) {
@@ -46,9 +54,11 @@ export class Numbering {
 
   toString(): string {
     let output = '';
-    if (this.style.nominator) output += this.style.nominator.toString(10);
-    if (this.style.separator) output += this.style.separator;
-    if (this.style.denominator) output += this.style.denominator.toString(10);
+    output += this.style.openParenthesis || '';
+    output += this.style.nominator?.toString(10) || '';
+    output += this.style.separator || '';
+    output += this.style.denominator?.toString(10) || '';
+    output += this.style.closeParenthesis || '';
     return output;
   }
 }
