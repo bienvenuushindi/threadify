@@ -18,7 +18,7 @@ body {
   }
 
   .title{
-    @apply uppercase text-gray-600
+    @apply uppercase text-gray-600 font-bold
   }
 }
 
