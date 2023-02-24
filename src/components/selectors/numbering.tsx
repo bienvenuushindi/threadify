@@ -1,23 +1,27 @@
+import React from 'react';
 import {styles} from '../../templates/styles';
 import {style} from '../../utils/numbering';
 import {isEmptyObject} from '../../helper';
+
 
 type Props = {
   numStyle: Function
 }
 
 function SelectNumbering({numStyle}: Props) {
-  function changeStyle(style: style) {
+  function changeStyle(e: React.ChangeEvent, style: style) {
     numStyle(style);
+    document.querySelector('.numbering.selectedOption')?.classList.remove('selectedOption')
+    e.target.parentElement?.classList.add('selectedOption');
   }
 
   return (
-    <>
-      <h2>Select Numbering</h2>
-      <div>
-        {styles.map((item: style, index) => <div key={'style' + index}>
+    <div className="border p-2 ">
+      <h2 className="title  mt-1 mb-2">Select Numbering</h2>
+      <div className="grid grid-cols-2 gap-3">
+        {styles.map((item: style, index) => <div key={'style' + index} className={`flex gap-2 numbering p-1  ${isEmptyObject(item)? 'selectedOption':''}`}>
           <input type="radio" name="numbering" defaultChecked={isEmptyObject(item)} value={index}
-                 onChange={() => changeStyle(item)}/>
+                 onChange={(e) => changeStyle(e, item)}/>
           <label>
             {isEmptyObject(item) ? 'None' : ''}
             {item.openParenthesis && <span>{item.openParenthesis}</span>}
@@ -28,7 +32,7 @@ function SelectNumbering({numStyle}: Props) {
           </label>
         </div>)}
       </div>
-    </>
+    </div>
   );
 
 }
