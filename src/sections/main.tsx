@@ -8,15 +8,7 @@ import SelectNumbering from '../components/selectors/numbering';
 
 
 function Main() {
-  const [text, setText] = useState<string>('There are many variations of passages of Lorem Ipsum available, ' +
-    'but the majority have suffered alteration in some form, by injected humour, or randomised words which don\'t look even slightly believable. ' +
-    'If you are going to use a passage of Lorem Ipsum, you need to be sure there isn\'t anything embarrassing hidden in the middle of text. All the ' +
-    'Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.Many ' +
-    'desktop publishing packages and web page editors now use is Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many ' +
-    'websites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the ' +
-    'likebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb' +
-    'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssshhh' +
-    'hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhqqqqqqqqqqqqqqqqqqqqqqqqqqqqq).');
+  const [text, setText] = useState<string>('');
   const [thread, setThread] = useState<string[]>([]);
   const [pos, setPos] = useState<Position>(Position.Start);
   const [numStyle, setNumStyle] = useState<style>(defaultStyle());
