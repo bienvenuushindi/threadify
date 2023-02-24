@@ -9,6 +9,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+  background-color: #f3f4f6;
+}
+/*#1e3a8a*/
+@layer components{
+  .selectedOption{
+     @apply border-blue-400 border shadow rounded bg-blue-400 text-white font-bold
+  }
+
+  .title{
+    @apply uppercase text-gray-600
+  }
 }
 
 .max-70-vh {
