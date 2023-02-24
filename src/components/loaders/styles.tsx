@@ -7,12 +7,12 @@ type tweetTemplate = {
 
 function NumberingStylePreview({position, numberingStyle: item}: tweetTemplate) {
   return (
-    <div>
-      <h2>Preview</h2>
+    <div className="border p-2 ">
+      <h2 className="title mt-1 mb-2">Preview</h2>
       <div className="animate-pulse  border p-3 shadow flex-col ">
         <div className="space-y-3">
           <div className="grid grid-cols-1 gap-4">
-            <div className={`flex ${position === Position.End ? 'order-2 ' : ''} items-center w-100`}>
+            <div className={`flex ${position === Position.End ? 'order-2 ' : ''} items-center w-100 gap-1`}>
               <div className={`w-fit ${position === Position.End ? 'order-2 ' : ''}`}>
                 {item.openParenthesis && <span>{item.openParenthesis}</span>}
                 {item.nominator && <span>{item.nominator}</span>}
