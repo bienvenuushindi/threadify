@@ -13,7 +13,7 @@ class Thread {
   }
 
   static countTweet(tweet: string): number {
-    return Math.ceil(Thread.strLength(tweet) / Thread.MaxTweetChars);
+    return Math.ceil((Thread.strLength(tweet) + 1) / Thread.MaxTweetChars);
   }
 
   static setNumbering(numbering: Numbering) {
@@ -34,7 +34,7 @@ class Thread {
     // get last tab space in the substring
     if ((Thread.MaxTweetChars - (end - start)) > option) return tweet;
     let lastSpace: number = tweet.lastIndexOf(separator);
-    if (lastSpace === -1 || (end - lastSpace) > 15) return Thread.extractTweetText(text, start, end - option , option);
+    if (lastSpace === -1 || (end - lastSpace) > 15) return Thread.extractTweetText(text, start, end - option, option);
     return Thread.extractTweetText(text, start, start + lastSpace, option);
   }
 
