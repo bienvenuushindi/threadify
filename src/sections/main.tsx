@@ -35,27 +35,42 @@ function Main() {
   }
 
   return (
-    <main className="container mx-10/12 mx-auto">
-
-      <div className="flex gap-2">
+    <main className="container mx-10/12 mx-auto p-6 border shadow-lg h-fit bg-white">
+      <div className="flex gap-2 flex-shrink">
         <div className="w-2/12">
           <div className="flex flex-col w-100 gap-2">
+            <div className="border p-2">
+              <h2 className="title">Tweet Max Characters / FREE ACCOUNT</h2>
+              <div className="flex flex-wrap gap-4 ">
+                <div className="shadow p-2 ">
+                  <h4 className="text-4xl text-blue-500 text-center">{Thread.MaxTweetChars}</h4>
+                </div>
+              </div>
+            </div>
             <SelectPositions pos={updatePosition}/>
             <SelectNumbering numStyle={updateStyle}/>
             <NumberingStylePreview position={pos} numberingStyle={numStyle}/>
           </div>
         </div>
-        <div className="left w-6/12">
-          <textarea name="text" placeholder="Enter your text " onChange={(e) => setText(e.target.value)}
-                    className="border w-11/12 mx-auto p-3 " rows={25}
-                    cols={10} defaultValue={text}></textarea>
-        </div>
-        <div className="right w-4/12 bg-gray-100 px-2 h-full overflow-auto max-70-vh">
-          <div>
-            <h2> Preview</h2>
+        <div className=" flex flex-col  min-h-full w-10/12 m-1 ">
+          <div className="flex">
+            <div className="flex-grow">
+              <h4 className="title">Type/paste to make a numbered Twitter thread!</h4>
+            </div>
           </div>
-          {thread.map((item, i) => <TweetComp key={'tweet' + i}
-                                              text={Thread.applyNumbering(item, i)}/>)}
+          <div className="flex flex-grow">
+            <div className="flex-grow">
+          <textarea name="text" placeholder="Enter your text " onChange={(e) => setText(e.target.value)}
+                    className="border w-full focus:border-blue-400 h-full border-2 focus:outline-none mx-auto p-3 "
+                    defaultValue={text}>
+
+          </textarea>
+            </div>
+            <div className=" w-4/12 bg-gray-100 px-2 h-full overflow-auto max-70-vh">
+              <h2 className="title"> Preview</h2>
+              {thread.map((item, i) => <TweetComp key={'tweet' + i} text={Thread.applyNumbering(item, i)}/>)}
+            </div>
+          </div>
         </div>
       </div>
     </main>
