@@ -29,7 +29,7 @@ function SocialMedia({customClasses = '', showIconText = false}: Props) {
                                                                               target="_blank"
                                                                               rel="noreferrer noopener"
                                                                               className="flex items-center"><span
-          className="text-blue-400 text-2xl">{icons[key]}</span> {showIconText && item.name}
+          className="text-gray-800 text-2xl">{icons[key]}</span> {showIconText && item.name}
         </a></li>;
       })
       }
