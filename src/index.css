@@ -12,7 +12,7 @@ body {
     background-color: #60a5fa;
 }
 
-@media screen and (min-width: 875px) {
+@media screen and (min-width: 1024px) {
     body {
         overflow: hidden;
     }
@@ -21,7 +21,7 @@ body {
 /*#1e3a8a*/
 @layer components {
     .selectedOption {
-        @apply border-blue-400 border shadow rounded bg-blue-400 text-white font-bold
+        @apply border-blue-400 border shadow rounded bg-blue-400  font-bold
     }
 
     .title {
