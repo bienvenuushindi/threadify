@@ -66,7 +66,7 @@ function Main() {
               thread!</h4>
             <div className="lg:hidden w-fit">
               <a href="#preview"
-                className=" text-blue-400 font-bold shadow-lg  border-1 w-fit flex items-center border border-blue-400 text-dark hover:bg-blue-400 mr-2 text-sm rounded-full p-1 px-2"
+                className=" text-blue-400 font-bold shadow-lg  w-fit flex items-center border border-blue-400 text-dark  mr-2 text-sm rounded-full p-1 px-2"
                 >
                <AiFillEye/> Preview
               </a>

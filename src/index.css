@@ -3,6 +3,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Lato, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -28,10 +33,11 @@ body {
         @apply uppercase text-gray-600 font-bold
     }
 
-    .sm-settings-box{
+    .sm-settings-box {
         @apply shadow-lg border p-2 border-blue-400  rounded
     }
-    .lg-settings-box{
+
+    .lg-settings-box {
         @apply shadow-none px-0 border-none rounded-none
     }
 }
