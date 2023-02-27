@@ -5,6 +5,7 @@ import {defaultStyle, Numbering, Position, style} from '../utils/numbering';
 import Thread from '../utils/thread';
 import SelectPositions from '../components/selectors/positions';
 import SelectNumbering from '../components/selectors/numbering';
+import {AiFillEyeInvisible, AiFillSetting} from 'react-icons/ai';
 
 
 function Main() {
@@ -12,6 +13,7 @@ function Main() {
   const [thread, setThread] = useState<string[]>([]);
   const [pos, setPos] = useState<Position>(Position.Start);
   const [numStyle, setNumStyle] = useState<style>(defaultStyle());
+  const [showSettings, toggleVisibility] = useState<boolean>(true);
   useEffect(() => {
     setThread(Thread.makeThread(text));
   }, [text, pos, numStyle]);
@@ -26,15 +28,24 @@ function Main() {
     Numbering.getInstance().style = {...style};
   }
 
+  function toggle() {
+    toggleVisibility(!showSettings);
+  }
+
   return (
-    <main className="container mx-10/12 mx-auto p-6 border shadow-lg h-fit bg-white">
-      <div className="flex gap-2 flex-shrink">
-        <div className="w-2/12">
+    <main className="container mx-10/12 mx-auto lg:p-4 px-3 pt-1 border shadow-lg h-fit bg-white relative">
+      <div className="absolute -right-1 lg:hidden">
+        <button className="bg-blue-400 shadow border-white border text-white hover:bg-blue-600 mr-2 text-2xl rounded-full p-2" onClick={toggle}>
+          {showSettings ? <AiFillEyeInvisible/> : <AiFillSetting/>}
+        </button>
+      </div>
+      <div className="flex flex-col lg:flex-row gap-2 flex-shrink">
+        <div id="settings" className={`lg:w-2/12 lg:mt-0 mt-6 sm-settings-box lg:lg-settings-box  ${showSettings ? '' : 'hidden'}`}>
           <div className="flex flex-col w-100 gap-2">
             <div className="border p-2">
               <h2 className="title">Tweet Max Characters / FREE ACCOUNT</h2>
               <div className="flex flex-wrap gap-4 ">
-                <div className="shadow p-2 ">
+                <div className=" p-2 ">
                   <h4 className="text-4xl text-blue-500 text-center">{Thread.MaxTweetChars}</h4>
                 </div>
               </div>
@@ -44,23 +55,19 @@ function Main() {
             <NumberingStylePreview position={pos} numberingStyle={numStyle}/>
           </div>
         </div>
-        <div className=" flex flex-col  min-h-full w-10/12 m-1 ">
-          <div className="flex">
-            <div className="flex-grow">
-              <h4 className="title">Type/paste to make a numbered Twitter thread!</h4>
-            </div>
-          </div>
-          <div className="flex flex-grow">
+        <div className=" flex flex-col  min-h-full lg:w-10/12 m-1 ">
+          <h4 className="title text-sm ">Type/paste to make a numbered {showSettings ? '' : <br/>} Twitter thread!</h4>
+          <div className="flex flex-col lg:flex-row  flex-grow">
             <div className="flex-grow">
           <textarea name="text" placeholder="Enter your text " onChange={(e) => setText(e.target.value)}
-                    className="border w-full focus:border-blue-400 h-full border-2 focus:outline-none mx-auto p-3 "
+                    className="border w-full focus:border-blue-400 lg:h-full min-50-vh border-2 focus:outline-none mx-auto p-3 "
                     defaultValue={text} autoFocus={true}>
 
           </textarea>
             </div>
-            <div className=" w-4/12 bg-gray-100 px-2 h-full overflow-auto max-70-vh">
+            <div className=" lg:w-4/12 mb-8 lg:mb-0 bg-gray-100 px-2 h-full  overflow-auto max-70-vh py-2">
               <div>
-                <h2 className="title text-2xl mt-1"> Preview</h2>
+                <h2 className="title text-2xl mt-1"> Preview <span className="text-sm ">contains <span className="text-blue-400 text-2xl">{thread.length}</span> tweet(s).</span></h2>
                 <p className="text-small text-gray-600">Note: Tweets are separated by space</p>
               </div>
               {thread.map((item, i) => <TweetComp key={'tweet' + i} text={Thread.applyNumbering(item, i)}/>)}
