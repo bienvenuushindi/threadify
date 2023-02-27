@@ -29,7 +29,7 @@ body {
     }
 
     .sm-settings-box{
-        @apply shadow-lg border p-2 border-blue-400 border-2 rounded
+        @apply shadow-lg border p-2 border-blue-400  rounded
     }
     .lg-settings-box{
         @apply shadow-none px-0 border-none rounded-none
