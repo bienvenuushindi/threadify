@@ -5,7 +5,7 @@ import {defaultStyle, Numbering, Position, style} from '../utils/numbering';
 import Thread from '../utils/thread';
 import SelectPositions from '../components/selectors/positions';
 import SelectNumbering from '../components/selectors/numbering';
-import {AiFillEyeInvisible, AiFillSetting} from 'react-icons/ai';
+import {TbSettingsOff, TbSettings} from 'react-icons/tb';
 
 
 function Main() {
@@ -33,20 +33,23 @@ function Main() {
   }
 
   return (
-    <main className="container mx-10/12 mx-auto lg:p-4 px-3 pt-1 border shadow-lg h-fit bg-white relative">
-      <div className="absolute -right-1 lg:hidden">
-        <button className="bg-blue-400 shadow border-white border text-white hover:bg-blue-600 mr-2 text-2xl rounded-full p-2" onClick={toggle}>
-          {showSettings ? <AiFillEyeInvisible/> : <AiFillSetting/>}
+    <main className="container mx-10/12 mx-auto lg:p-4 px-3 pt-1 border shadow-lg  bg-white  flex-grow">
+      <div className="fixed z-10 left-1 top-1 lg:hidden">
+        <button
+          className="bg-white shadow  border-2 border text-dark hover:bg-blue-400 mr-2 text-2xl rounded-full p-2"
+          onClick={toggle}>
+          {showSettings ? <TbSettingsOff/> : <TbSettings/>}
         </button>
       </div>
-      <div className="flex flex-col lg:flex-row gap-2 flex-shrink">
-        <div id="settings" className={`lg:w-2/12 lg:mt-0 mt-6 sm-settings-box lg:lg-settings-box  ${showSettings ? '' : 'hidden'}`}>
+      <div className="flex flex-col lg:flex-row gap-2 flex-shrink h-full">
+        <div id="settings"
+             className={`lg:w-2/12 lg:mt-0 mt-6 sm-settings-box lg:lg-settings-box  ${showSettings ? '' : 'hidden'}`}>
           <div className="flex flex-col w-100 gap-2">
             <div className="border p-2">
               <h2 className="title">Tweet Max Characters / FREE ACCOUNT</h2>
               <div className="flex flex-wrap gap-4 ">
                 <div className=" p-2 ">
-                  <h4 className="text-4xl text-blue-500 text-center">{Thread.MaxTweetChars}</h4>
+                  <h4 className="text-4xl text-center text-blue-600">{Thread.MaxTweetChars}</h4>
                 </div>
               </div>
             </div>
@@ -67,7 +70,9 @@ function Main() {
             </div>
             <div className=" lg:w-4/12 mb-8 lg:mb-0 bg-gray-100 px-2 h-full  overflow-auto max-70-vh py-2">
               <div>
-                <h2 className="title text-2xl mt-1"> Preview <span className="text-sm ">contains <span className="text-blue-400 text-2xl">{thread.length}</span> tweet(s).</span></h2>
+                <h2 className="title text-2xl mt-1"> Preview <span className="text-sm ">contains <span
+                  className="text-blue-600 text-2xl">{text.length > 0 ? Thread.CountTweets : 0}</span> tweet(s).</span>
+                </h2>
                 <p className="text-small text-gray-600">Note: Tweets are separated by space</p>
               </div>
               {thread.map((item, i) => <TweetComp key={'tweet' + i} text={Thread.applyNumbering(item, i)}/>)}
