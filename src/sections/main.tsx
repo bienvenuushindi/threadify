@@ -64,7 +64,7 @@ function Main() {
             <div className="flex-grow">
           <textarea name="text" placeholder="Enter your text " onChange={(e) => setText(e.target.value)}
                     className="border w-full focus:border-blue-400 lg:h-full min-50-vh border-2 focus:outline-none mx-auto p-3 "
-                    defaultValue={text} autoFocus={true}>
+                    defaultValue={text} autoFocus={false}>
 
           </textarea>
             </div>
