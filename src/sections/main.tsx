@@ -61,7 +61,7 @@ function Main() {
             <div className=" w-4/12 bg-gray-100 px-2 h-full overflow-auto max-70-vh">
               <div>
                 <h2 className="title text-2xl mt-1"> Preview</h2>
-                <p className="text-small text-gray-600">Note: Tweets are separated by space by</p>
+                <p className="text-small text-gray-600">Note: Tweets are separated by space</p>
               </div>
               {thread.map((item, i) => <TweetComp key={'tweet' + i} text={Thread.applyNumbering(item, i)}/>)}
             </div>
