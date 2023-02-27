@@ -6,6 +6,7 @@ import Thread from '../utils/thread';
 import SelectPositions from '../components/selectors/positions';
 import SelectNumbering from '../components/selectors/numbering';
 import {TbSettingsOff, TbSettings} from 'react-icons/tb';
+import {AiFillEye} from 'react-icons/ai';
 
 
 function Main() {
@@ -34,13 +35,14 @@ function Main() {
 
   return (
     <main className="container mx-10/12 mx-auto lg:p-4 px-3 pt-1 border shadow-lg  bg-white  flex-grow">
-      <div className="fixed z-10 left-1 top-1 lg:hidden">
+      <div className="fixed z-10 -right-1 top-1 lg:hidden">
         <button
-          className="bg-white shadow  border-2 border text-dark hover:bg-blue-400 mr-2 text-2xl rounded-full p-2"
+          className="bg-white shadow-lg   border-2 border text-dark hover:bg-blue-400 mr-2 text-2xl rounded-full p-2"
           onClick={toggle}>
           {showSettings ? <TbSettingsOff/> : <TbSettings/>}
         </button>
       </div>
+
       <div className="flex flex-col lg:flex-row gap-2 flex-shrink h-full">
         <div id="settings"
              className={`lg:w-2/12 lg:mt-0 mt-6 sm-settings-box lg:lg-settings-box  ${showSettings ? '' : 'hidden'}`}>
@@ -58,8 +60,19 @@ function Main() {
             <NumberingStylePreview position={pos} numberingStyle={numStyle}/>
           </div>
         </div>
-        <div className=" flex flex-col  min-h-full lg:w-10/12 m-1 ">
-          <h4 className="title text-sm ">Type/paste to make a numbered {showSettings ? '' : <br/>} Twitter thread!</h4>
+        <div className=" flex flex-col  min-h-full lg:w-10/12 m-1 relative">
+          <div className="flex">
+            <h4 className="title text-sm flex-grow ">Type/paste to make a numbered {showSettings ? '' : <br/>} Twitter
+              thread!</h4>
+            <div className="lg:hidden w-fit">
+              <a href="#preview"
+                className=" text-blue-400 font-bold shadow-lg  border-1 w-fit flex items-center border border-blue-400 text-dark hover:bg-blue-400 mr-2 text-sm rounded-full p-1 px-2"
+                >
+               <AiFillEye/> Preview
+              </a>
+            </div>
+          </div>
+
           <div className="flex flex-col lg:flex-row  flex-grow">
             <div className="flex-grow">
           <textarea name="text" placeholder="Enter your text " onChange={(e) => setText(e.target.value)}
@@ -75,7 +88,10 @@ function Main() {
                 </h2>
                 <p className="text-small text-gray-600">Note: Tweets are separated by space</p>
               </div>
-              {thread.map((item, i) => <TweetComp key={'tweet' + i} text={Thread.applyNumbering(item, i)}/>)}
+              <div id="preview">
+                {thread.map((item, i) => <TweetComp key={'tweet' + i} text={Thread.applyNumbering(item, i)}/>)}
+              </div>
+
             </div>
           </div>
         </div>
