@@ -37,7 +37,7 @@ function Main() {
     <main className="container mx-10/12 mx-auto lg:p-4 px-3 pt-1 border shadow-lg  bg-white  flex-grow">
       <div className="fixed z-10 -right-1 top-1 lg:hidden">
         <button
-          className="shadow-lg border-2 border  hover:bg-blue-400 mr-2 text-2xl rounded-full p-2"
+          className="shadow-lg border-2 border bg-white  hover:bg-blue-400 mr-2 text-2xl rounded-full p-2"
           onClick={toggle}>
           {showSettings ? <TbSettingsOff/> : <TbSettings/>}
         </button>
