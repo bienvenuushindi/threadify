@@ -1,5 +1,5 @@
 
-[![threadify](https://vercel.com/8afd0e0a-6024-4d1c-acab-3dce0088b0ca)](https://extendtweet.vercel.app/)
+[![threadify](https://user-images.githubusercontent.com/26736582/222406693-30517e48-f33f-4781-b094-30f97349e4e8.png)](https://extendtweet.vercel.app/)
 
 # Threadify (extend tweet)
 Make threads creation easier
