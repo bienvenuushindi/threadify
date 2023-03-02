@@ -1,13 +1,59 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+    font-family: Lato, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #60a5fa;
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+        overflow: hidden;
+    }
+}
+
+/*#1e3a8a*/
+@layer components {
+    .selectedOption {
+        @apply border-blue-400 border shadow rounded bg-blue-400  font-bold
+    }
+
+    .title {
+        @apply uppercase text-gray-600 font-bold
+    }
+
+    .sm-settings-box {
+        @apply shadow-lg border p-2 border-blue-400  rounded
+    }
+
+    .lg-settings-box {
+        @apply shadow-none px-0 border-none rounded-none
+    }
+}
+
+.max-70-vh {
+    max-height: 70vh;
+}
+
+.min-50-vh {
+    min-height: 50vh;
+}
+
+.max-18-vh {
+    max-height: 18vh;
+}
+
+.max-2-vh {
+    max-height: 2vh;
 }
