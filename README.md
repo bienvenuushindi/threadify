@@ -9,7 +9,7 @@ Make threads creation easier
 
 ## Built With
 
-- HTML, CSS, JavaScript, React, tailwindcss
+- HTML, CSS, Typescript, React, tailwindcss
 
 
 ## Getting Started
