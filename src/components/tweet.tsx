@@ -6,9 +6,6 @@ type props = { text: string }
 
 function TweetComp({text}: props) {
   function copyText(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, text: string) {
-    // Get the source
-    const target = e.target as HTMLInputElement;
-    const parent = target.closest('div');
     // Copy the text
     navigator.clipboard.writeText(text);
     parent?.firstElementChild?.classList.remove('hidden');
